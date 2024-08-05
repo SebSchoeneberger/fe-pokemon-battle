@@ -29,18 +29,13 @@ export default function Home() {
           <PokemonCard />
           <PokemonCard />
         </div>
-        <div className="join">
-          <button className="join-item btn">«</button>
-          <button className="join-item btn">Page 22</button>
-          <button className="join-item btn">»</button>
+
+        {/* Pagination */}
+        <div className="flex justify-center gap-6 mt-8">
+          <button className="btn btn-active">Prev Page</button>
+          <button className="btn btn-primary">Next Page</button>
         </div>
       </div>
     </>
   );
 }
-
-// {
-//   diaries
-//     .map((diary) => <DiaryCard key={diary.id} diary={diary} />)
-//     .slice(1);
-// }
