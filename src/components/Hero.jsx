@@ -1,3 +1,5 @@
+import heroCover from "../assets/pokemon-hero.jpeg";
+
 export default function Hero() {
   return (
     <>
@@ -11,14 +13,10 @@ export default function Hero() {
         <div className="hero-overlay bg-opacity-80 "></div>
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-lg">
-            <h1 className="mb-5 text-5xl font-light">
-              Discover the last blogs
+            <h1 className="mb-5 text-5xl font-bold">
+              Are you ready to catch them all?
             </h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae.
-            </p>
-            {/* <button className="btn btn-primary">Get Started</button> */}
+            <button className="btn btn-primary">Let's Battle!</button>
           </div>
         </div>
       </div>
