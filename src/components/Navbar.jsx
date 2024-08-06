@@ -37,14 +37,16 @@ export default function Navbar() {
                 <li>
                   <Search />
                 </li>
+
                 <li>
-                  <a>My Roster</a>
+                  <NavLink to="/roster">My Roster</NavLink>
+                </li>
+
+                <li>
+                  <NavLink to="/battle">Battle</NavLink>
                 </li>
                 <li>
-                  <a>Battle</a>
-                </li>
-                <li>
-                  <a>Leaderboard</a>
+                  <NavLink to="/leaderboard">Leaderboard</NavLink>
                 </li>
               </ul>
             </div>
@@ -59,13 +61,13 @@ export default function Navbar() {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li className="text-lg font-bold">
-                <a>My Roster</a>
+                <NavLink to="roster">My Roster</NavLink>
               </li>
               <li className="text-lg font-bold">
-                <a>Battle</a>
+                <NavLink to="/battle">Battle</NavLink>
               </li>
               <li className="text-lg font-bold">
-                <a>Leaderboard</a>
+                <NavLink to="/leaderboard">Leaderboard</NavLink>
               </li>
               <li>
                 <Search />
@@ -89,7 +91,9 @@ export default function Navbar() {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-neutral"
               >
                 <li>
-                  <a className="justify-between">Profile</a>
+                  <NavLink to="/roster" className="justify-between">
+                    Profile
+                  </NavLink>
                 </li>
                 <li>
                   <a>Logout</a>
