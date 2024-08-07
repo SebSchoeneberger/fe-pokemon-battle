@@ -43,6 +43,7 @@ export default function Home() {
           {pokemon.map((poke) => (
             <PokemonCard
               key={poke.id}
+              id={poke.id}
               image={poke.sprites.front_default}
               name={poke.name}
               types={poke.types.map((type) => type.type.name)}

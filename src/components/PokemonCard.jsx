@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function PokemonCard({ image, name, types = [] }) {
+export default function PokemonCard({ id, image, name, types = [] }) {
   return (
     <>
       <div className="card bg-neutral text-neutral-content">
@@ -25,6 +25,7 @@ export default function PokemonCard({ image, name, types = [] }) {
               </div>
             ))}
           </div>
+        
           <h2 className="card-title capitalize">{name}</h2>
 
           <div className="card-actions justify-end">
@@ -45,7 +46,7 @@ export default function PokemonCard({ image, name, types = [] }) {
                 />
               </svg>
             </button>
-            <Link to={`/pokemon/${name}`}>
+            <Link to={`/pokemon/${id}`}>
               <button className="btn btn-sm btn-accent">See more</button>
             </Link>
           </div>
