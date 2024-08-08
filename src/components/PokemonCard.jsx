@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 
 export default function PokemonCard({ id, image, name, types = [] }) {
+  function handleSave(e) {
+    e.preventDefault();
+    const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
+    storePokemon.push({ name: name, id: id });
+
+    localStorage.setItem("myPokemon", JSON.stringify(storePokemon));
+    console.log(name);
+  }
   return (
     <>
       <div className="card bg-neutral text-neutral-content">
@@ -25,11 +33,11 @@ export default function PokemonCard({ id, image, name, types = [] }) {
               </div>
             ))}
           </div>
-        
+
           <h2 className="card-title capitalize">{name}</h2>
 
           <div className="card-actions justify-end">
-            <button className="btn btn-sm btn-secondary">
+            <button className="btn btn-sm btn-secondary" onClick={handleSave}>
               Catch it
               <svg
                 xmlns="http://www.w3.org/2000/svg"
