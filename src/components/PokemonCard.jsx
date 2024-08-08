@@ -1,14 +1,27 @@
 import { Link } from "react-router-dom";
 
+const pokemon = { id: 1 }; // pokemon you are trying to add
+const found = JSON.parse(localStorage.getItem("myPokemon"))?.find((p) => {
+  return pokemon.id === p.id;
+});
+
+console.log(found);
+if (found) {
+  // means that the pokemon already exist
+} else {
+  // save the pokemon to local storage
+}
+
 export default function PokemonCard({ id, image, name, types = [] }) {
   function handleSave(e) {
     e.preventDefault();
     const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
-    storePokemon.push({ name: name, id: id });
+    storePokemon.push({ name: name, id: id, image: image });
 
     localStorage.setItem("myPokemon", JSON.stringify(storePokemon));
     console.log(name);
   }
+
   return (
     <>
       <div className="card bg-neutral text-neutral-content">
