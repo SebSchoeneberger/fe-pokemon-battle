@@ -32,7 +32,14 @@ export default function Roster() {
               const handleRemove = (e, idToRemove) => {
                 e.preventDefault();
                 idToRemove = p.id;
-                console.log(`Function handle remove ${idToRemove}`);
+                const myPoke = JSON.parse(localStorage.getItem("myPokemon"));
+                console.log(myPoke);
+
+                const indexToRemove = myPoke.find((i) => i.id === idToRemove);
+
+                console.log(
+                  `Function handle remove ${idToRemove}, ${indexToRemove}`
+                );
               };
               return (
                 <div
