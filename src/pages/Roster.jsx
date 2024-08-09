@@ -1,16 +1,24 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import Skeleton from "../components/Skeleton";
 
 export default function Roster() {
   const [roster, setRoster] = useState([]);
-
+ 
+  const navigate = useNavigate();
   useEffect(() => {
     const myPoke = JSON.parse(localStorage.getItem("myPokemon"));
     if (myPoke) {
       setRoster(myPoke);
     }
   }, []);
+
+
+  const handleBattleClick = (p) => {
+    const selectedPokemon = { id: p.id };
+    navigate('/battle', { state: { selectedPokemon } });
+  };
 
   return (
     <>
@@ -32,11 +40,11 @@ export default function Roster() {
                 <div className="card-body items-center text-center">
                   <h2 className="card-title capitalize">{p.name}</h2>
                   <div className="card-actions justify-end">
-                    <Link to={`/battle`}>
-                      <button className="btn btn-sm btn-secondary">
+                    
+                      <button  onClick={()=> handleBattleClick(p)} className="btn btn-sm btn-secondary">
                         Battle
                       </button>
-                    </Link>
+                  
                     <Link to={`/pokemon/${p.name}`}>
                       <button className="btn btn-sm btn-accent">More</button>
                     </Link>{" "}
