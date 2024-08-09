@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <>
       <div className="bg-primary text-neutral-content">
-        <div className="navbar container m-auto py-2">
+        <div className="navbar container  m-auto py-2">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -59,7 +59,7 @@ export default function Navbar() {
             </NavLink>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
+            <ul className="menu gap-4 menu-horizontal px-1">
               <li className="text-lg font-bold">
                 <NavLink to="roster">My Roster</NavLink>
               </li>
