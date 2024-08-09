@@ -54,13 +54,13 @@ export default function Home() {
         {/* Pagination */}
         <div className="flex justify-center gap-6 mt-8">
           <button
-            className="btn btn-active"
+            className="btn btn-primary btn-active"
             onClick={handlePrev}
             disabled={start === 1}
           >
             Prev Page
           </button>
-          <button className="btn btn-primary" onClick={handleNext}>
+          <button className="btn btn-primary btn-active" onClick={handleNext}>
             Next Page
           </button>
         </div>
