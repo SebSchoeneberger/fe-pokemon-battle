@@ -6,6 +6,7 @@ export default function PokemonDetail() {
   const [pokemon, setPokemon] = useState(null);
   const [abilityDetails, setAbilityDetails] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -58,6 +59,38 @@ export default function PokemonDetail() {
         return 'bg-black';
     }
   };
+
+
+//saving to local storage
+useEffect(() => {
+  if (pokemon) {
+    const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
+    const existingItem = storePokemon.find((item) => item.id === pokemon.id);
+    if (existingItem) {
+      setIsSaved(true);
+    }
+  }
+}, [pokemon]);
+
+  function handleSave(e) {
+    e.preventDefault();
+
+    const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
+    const newItem = { name: pokemon.name, id: pokemon.id, image: pokemon.sprites.front_default };
+
+    // Check if an item with the same ID already exists
+    const existingItem = storePokemon.find((item) => item.id === newItem.id);
+    if (existingItem) {
+      // Handle duplicate ID case (you can customize this behavior)
+      console.log("Item with ID", newItem.id, "already exists!");
+      return;
+    }
+
+    // Add the new item to the array
+    storePokemon.push(newItem);
+    localStorage.setItem("myPokemon", JSON.stringify(storePokemon));
+    setIsSaved(true);
+  }
 
   if (!pokemon) {
     return <div>Loading...</div>;
@@ -125,8 +158,8 @@ export default function PokemonDetail() {
           ))}
         </ul>
         <div className="card-actions justify-end">
-          <button className="btn btn-sm btn-secondary">
-            Catch it
+          <button onClick={handleSave} className="btn  btn-sm btn-secondary">
+            {isSaved ? "In your roster" : "Catch it"}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

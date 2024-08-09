@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 // let storePokemon = [];
 // const found = JSON.parse(localStorage.getItem("myPokemon"))?.find((p) => {
@@ -6,7 +7,8 @@ import { Link } from "react-router-dom";
 // });
 // console.log(found);
 
-export default function PokemonCard({ id, image, name, types = [] }) {
+export default function PokemonCard({ id, image, name, types = [],  }) {
+  const [isSaved, setIsSaved] = useState(false);
   // function handleSave(e) {
   //   e.preventDefault();
 
@@ -14,6 +16,17 @@ export default function PokemonCard({ id, image, name, types = [] }) {
   //   storePokemon.push({ name: name, id: id, image: image });
   //   localStorage.setItem("myPokemon", JSON.stringify(storePokemon));
   // }
+
+//checking if it is in the roster, if true changing the name of the button
+  useEffect(() => {
+    
+      const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
+      const existingItem = storePokemon.find((item) => item.id === id);
+      if (existingItem) {
+        setIsSaved(true);
+      }
+    
+  }, [id]);
 
   function handleSave(e) {
     e.preventDefault();
@@ -63,7 +76,7 @@ export default function PokemonCard({ id, image, name, types = [] }) {
 
           <div className="card-actions justify-end">
             <button className="btn btn-sm btn-secondary" onClick={handleSave}>
-              Catch it
+              {isSaved ? "In your roster" : "Catch it" }
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
