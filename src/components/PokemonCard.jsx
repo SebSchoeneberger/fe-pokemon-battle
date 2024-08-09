@@ -1,31 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-// let storePokemon = [];
-// const found = JSON.parse(localStorage.getItem("myPokemon"))?.find((p) => {
-//   return storePokemon.id === p.id;
-// });
-// console.log(found);
-
-export default function PokemonCard({ id, image, name, types = [],  }) {
+export default function PokemonCard({ id, image, name, types = [] }) {
   const [isSaved, setIsSaved] = useState(false);
-  // function handleSave(e) {
-  //   e.preventDefault();
 
-  //   const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
-  //   storePokemon.push({ name: name, id: id, image: image });
-  //   localStorage.setItem("myPokemon", JSON.stringify(storePokemon));
-  // }
-
-//checking if it is in the roster, if true changing the name of the button
+  //checking if it is in the roster, if true changing the name of the button
   useEffect(() => {
-    
-      const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
-      const existingItem = storePokemon.find((item) => item.id === id);
-      if (existingItem) {
-        setIsSaved(true);
-      }
-    
+    const storePokemon = JSON.parse(localStorage.getItem("myPokemon")) || [];
+    const existingItem = storePokemon.find((item) => item.id === id);
+    if (existingItem) {
+      setIsSaved(true);
+    }
   }, [id]);
 
   function handleSave(e) {
@@ -75,23 +60,32 @@ export default function PokemonCard({ id, image, name, types = [],  }) {
           <h2 className="card-title capitalize">{name}</h2>
 
           <div className="card-actions justify-end">
-            <button className="btn btn-sm btn-secondary" onClick={handleSave}>
-              {isSaved ? "In your roster" : "Catch it" }
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-            </button>
+            {isSaved ? (
+              <Link to={"/roster"}>
+                <button className="btn btn-sm btn-default">
+                  In your roster
+                </button>
+              </Link>
+            ) : (
+              <button className="btn btn-sm btn-secondary" onClick={handleSave}>
+                Catch it
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+              </button>
+            )}
+
             <Link to={`/pokemon/${id}`}>
               <button className="btn btn-sm btn-accent">See more</button>
             </Link>
