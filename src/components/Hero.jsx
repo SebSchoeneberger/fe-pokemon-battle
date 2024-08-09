@@ -1,4 +1,5 @@
 import heroCover from "../assets/pokemon-hero.jpeg";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -16,7 +17,12 @@ export default function Hero() {
             <h1 className="mb-5 text-5xl font-bold">
               Are you ready to catch them all?
             </h1>
-            <button className="btn btn-primary">Let's Battle!</button>
+            <p className="text-lg">
+              Here you will find the best pokemon trainers
+            </p>
+            <Link to="/leaderboard">
+              <button className="btn btn-primary mt-4">See the list </button>
+            </Link>
           </div>
         </div>
       </div>
