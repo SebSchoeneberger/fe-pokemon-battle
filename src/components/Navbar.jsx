@@ -34,9 +34,9 @@ export default function Navbar() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-64 p-2 shadow text-neutral"
               >
-                {/* <li>
+                <li>
                   <Search />
-                </li> */}
+                </li>
 
                 <li>
                   <NavLink to="/roster">My Roster</NavLink>
@@ -69,9 +69,9 @@ export default function Navbar() {
               <li className="text-lg font-bold">
                 <NavLink to="/leaderboard">Leaderboard</NavLink>
               </li>
-              {/* <li>
+              <li>
                 <Search />
-              </li> */}
+              </li>
             </ul>
           </div>
           <div className="navbar-end gap-6">
