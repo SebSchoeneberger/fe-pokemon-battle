@@ -2,6 +2,7 @@ import LeaderboardTable from "../components/LeadeboardTable";
 import addIcon from "../assets/add.png";
 import { useState, useEffect} from "react";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 export default function Leaderboard() {
   const [user, setUser] = useState({
@@ -13,6 +14,7 @@ export default function Leaderboard() {
   });
   const [users, setUsers] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [isOpen , setIsOpen] = useState(false);
 
 const handleChange = (e) => {
   setUser((prev) => ({...prev, [e.target.name]: e.target.value}));
@@ -45,6 +47,8 @@ const handleSubmit = (e) => {
     .then((res) => {
       console.log(res.data);
       setRefresh(prev => !prev);
+      toast.success('Welcome to our Leaderboard!');
+      setIsOpen(prev => !prev);
     })
   } catch (error) {
     console.error(error);
@@ -66,7 +70,7 @@ const handleSubmit = (e) => {
           Leaderboard page
         </p>
 
-        <details className="collapse bg-base-200 pb-8">
+        <details className="collapse bg-base-200 pb-8" {...(isOpen ? { open } : {})}>
           <summary className="collapse-title text-center text-xl font-medium inline-flex items-center">
             <div className="flex justify-center items-center gap-2">
               <span>Click here to join our Leaderboard</span>

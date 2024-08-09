@@ -247,7 +247,9 @@ setBattleResult(battleLog.join('\n'));
   // Work in progress
   const getScore = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/leaderboard/`);
+      const response = await axios.post('http://localhost:3000/leaderboard/user',{
+        username: userName,
+      });
       setTotalXp(response.data.score);
       console.log('Score fetched successfully:', response.data);
     } catch (error) {
