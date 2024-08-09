@@ -19,6 +19,13 @@ export default function Roster() {
     navigate("/battle", { state: { selectedPokemon } });
   };
 
+  // Function to delete a pokemon from the roster, based on the id
+  const handleDeleteClick = (id) => {
+    const updatedRoster = roster.filter((p) => p.id !== id);
+    setRoster(updatedRoster);
+    localStorage.setItem("myPokemon", JSON.stringify(updatedRoster));
+  };
+
   return (
     <>
       <div className="container m-auto min-h-screen py-10">
@@ -63,7 +70,7 @@ export default function Roster() {
                       </Link>
                       <button
                         className="btn btn-sm btn-default"
-                        onClick={handleRemove}
+                        onClick={() => handleDeleteClick(p.id)}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
