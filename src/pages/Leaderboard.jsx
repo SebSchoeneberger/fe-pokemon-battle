@@ -4,6 +4,8 @@ import { useState, useEffect} from "react";
 import axios from 'axios';
 import { toast } from "react-toastify";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function Leaderboard() {
   const [user, setUser] = useState({
     username: "",
@@ -22,7 +24,7 @@ const handleChange = (e) => {
 
 useEffect(() => {
 
-      axios.get('http://localhost:3000/leaderboard')
+      axios.get(`${API_BASE_URL}/leaderboard`)
       .then((res) => {
         const sortedUsers = res.data.sort((a, b) => b.score - a.score);
         setUsers(sortedUsers);
@@ -43,7 +45,7 @@ const handleSubmit = (e) => {
   };
 
   try {
-    axios.post("http://localhost:3000/leaderboard", finalUser)
+    axios.post(`${API_BASE_URL}/leaderboard`, finalUser)
     .then((res) => {
       console.log(res.data);
       setRefresh(prev => !prev);

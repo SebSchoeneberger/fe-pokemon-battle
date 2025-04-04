@@ -4,6 +4,7 @@ import axios from "axios";
 import PokemonDetail from "./PokemonDetail.jsx";
 import { get } from "react-hook-form";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Type advantages
 const typeAdvantages = {
@@ -233,7 +234,7 @@ setBattleResult(battleLog.join('\n'));
   //Function to send score to leaderboard
   const sendScore = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/leaderboard', {
+      const response = await axios.post(`${API_BASE_URL}/leaderboard`, {
         username: userName,
         score :totalXp
       });
@@ -247,7 +248,7 @@ setBattleResult(battleLog.join('\n'));
   // Work in progress
   const getScore = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/leaderboard/user',{
+      const response = await axios.get(`${API_BASE_URL}/leaderboard/user`,{
         username: userName,
       });
       setTotalXp(response.data.score);
